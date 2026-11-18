@@ -154,8 +154,11 @@ func Get(name string) string {
 	case "CGO_CFLAGS", "CGO_CPPFLAGS", "CGO_CXXFLAGS":
 		return os.Getenv(name)
 	case "CGO_ENABLED":
-		// Always enable CGo. It is required by a number of targets, including
-		// macOS and the rp2040.
+		// Honour the caller's CGO_ENABLED; default to "1" so stock behaviour is
+		// unchanged. (D-cgo option (a) prototype, PROPOSED.)
+		if v := os.Getenv("CGO_ENABLED"); v != "" {
+			return v
+		}
 		return "1"
 	case "TINYGOROOT":
 		return sourceDir()
