@@ -9,6 +9,7 @@ repository until GitHub access exists.
 | id | commit subject | test |
 |---|---|---|
 | 0001 | loader: use upstream Go net, os and internal/poll packages | `go test -tags llvm22 ./loader -run TestPathsToOverrideUpstreamNetOsPoll` + `fork/test.sh` |
+| 0002 | runtime: epoll netpoller for internal/poll (linux/amd64) | `fork/test.sh` (`tests/0002-netpoller`; `tests/0001-*` becomes a run test) |
 
 The commits are reproducible. They use a fixed author/committer
 (`gVisor isolation campaign <source-lead@agents.company.invalid>`) and a fixed date
